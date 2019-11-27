@@ -3,10 +3,10 @@
 #include <math.h>
 
 // サンプリング周期
-#define T_s 0.01  // 0.01s
+#define T_s 0.001  // 0.01s
 
 // プラントモデル
-#define T 0.5 // 時定数 0.5s
+#define T 0.1 // 時定数 0.5s
 #define K 1 // DCゲイン 1
 
   /*
@@ -32,7 +32,7 @@ int main(void){
     //printf("file opened\n");
 
     while(fscanf(fp_u, "%lf,%lf", &time, &u_k0) != EOF){
-
+			//time += time * T_s;
       y_k0 = pow((T_s + 2*T), -1) * (K*T_s*(u_k0 + u_k1) - (T_s - 2*T)*y_k1);
       //printf("%f\t%f\n", time, u_k0);
       fprintf(fp_y, "%lf,%lf\n", time, y_k0);
